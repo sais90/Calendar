@@ -1,0 +1,51 @@
+.calendar {
+    /* display: flex;
+    flex-direction: column; */
+    width: 50%;
+    /* padding: 20px; */
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    border: solid 2px gray;
+}
+
+.today {
+    background: rgb(63, 63, 250);
+}
+
+.day-of-month:hover {
+    border: solid 2px white;
+    cursor: pointer;
+}
+
+
+.header {
+    background: gray;
+    font-weight: bold;
+    width: 100%;
+    /* border-bottom: solid 2px white; */
+    /* padding: 10px; */
+}
+
+
+ /* попробовать сделать div */
+hr {
+    margin-block-end: 0px;
+}
+
+
+.wrapper {
+    background: gray;
+    padding: 10px;
+    /* width: 50%; */
+    color: white;
+}
+
+
+/* button {
+    background: gray;
+    color: white;
+    border: none;
+} */
