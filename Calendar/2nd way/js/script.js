@@ -1,6 +1,5 @@
 window.onload = start;
 
-// revision
 function start() {
     let calendar1 = new Calendar();
     calendar1.render();
