@@ -6,13 +6,13 @@ function start() {
 
 class Calendar {
     constructor() {
-        // this.now = new Date();
-        this.now = new Date(2022, 3, 28);
+        this.now = new Date();
+        //this.now = new Date(2022, 3, 28);
         this.today = this.now.getDate();
         this.year = this.now.getFullYear();
         this.month = this.now.getMonth();
         this.firstDayOfCurrentMonth = new Date(this.year, this.month, 1);
-        this.dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+        // this.dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
         this.monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август',
             'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
         this.monthNamesCase = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля',
@@ -55,28 +55,28 @@ class Calendar {
         document.getElementById('year-current').innerHTML = this.firstDayOfCurrentMonth.getFullYear();
     }
 
-    createTable = () => {
-        let weekday = document.createElement('div');
-        weekday.className = 'weekday';
+    // createTable = () => {
+    //     let weekday = document.createElement('div');
+    //     weekday.className = 'weekday';
 
-        this.dayNames.forEach(name => {
-            let td = document.createElement('div');
-            td.className = 'td';
-            td.innerHTML = name;
-            weekday.append(td);
-        })
+    //     this.dayNames.forEach(name => {
+    //         let td = document.createElement('div');
+    //         td.className = 'td';
+    //         td.innerHTML = name;
+    //         weekday.append(td);
+    //     })
 
-        document.getElementById('wrapper-table').appendChild(weekday);
-    }
+    //     document.getElementById('wrapper-table').appendChild(weekday);
+    // }
 
     fillTable = () => {
 
-        // let date = new Date(this.firstDayOfCurrentMonth.getTime() + 1);
-        // date.setDate(this.firstDayOfCurrentMonth.getDate() - this.firstDayOfCurrentMonth.getDay());
-        let date = new Date(this.firstDayOfCurrentMonth.getTime());
+        let date = new Date(this.firstDayOfCurrentMonth.getTime() + 1);
+        date.setDate(this.firstDayOfCurrentMonth.getDate() - this.firstDayOfCurrentMonth.getDay());
+       /* let date = new Date(this.firstDayOfCurrentMonth.getTime());
         let date1 = this.firstDayOfCurrentMonth.getDate();
         let date2 = this.firstDayOfCurrentMonth.getDay();
-        date.setDate(date1 - date2 + 1);
+        date.setDate(date1 - date2 + 1);*/
 
         let i = 0;
         do {
@@ -174,7 +174,7 @@ class Calendar {
         this.createFullDate();
         this.createCurrentMonthFrame();
         this.createCurrentYearFrame();
-        this.createTable();
+        // this.createTable();
         this.fillTable();
         this.backToPointedDate();
     }

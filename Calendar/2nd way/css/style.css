@@ -59,16 +59,29 @@ header {
     cursor: default;
 }
 
-.weekday {
+
+.day-names {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
 }
 
-.weekday:hover {
+/* .weekday {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+} */
+
+.day-names {
     cursor: default;
 }
+
+
+/* .weekday:hover {
+    cursor: default;
+} */
 
 .week-string {
     display: flex;
