@@ -163,4 +163,5 @@ header {
 
 .today-pointed-active {
     border: solid 2px black;
+    background-color: crimson;
 }
