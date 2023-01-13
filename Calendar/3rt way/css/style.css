@@ -1,0 +1,166 @@
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.calendar-wrapper {
+    background: gray;
+    color: white;
+    width: 20%;
+}
+
+header {
+    border-bottom: solid 1px white;
+    margin: 10px;
+    padding-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.selected-date {
+    color: #0099ff;
+}
+
+.selected-date:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.month-slider {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.button {
+    border: none;
+    background: gray;
+    color: white;
+    height: 50px;
+    font-size: 32px;
+}
+
+.button:hover {
+    cursor: pointer;
+    color: #0099ff;
+}
+
+.current-month-year-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 50px;
+    font-size: 24px;
+    align-items: center;
+}
+
+.current-month-year-wrapper:hover {
+    cursor: default;
+}
+
+
+.day-names {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    cursor: default;
+
+}
+
+/* .weekday {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+} */
+
+/* .day-names {
+    cursor: default;
+} */
+
+
+/* .weekday:hover {
+    cursor: default;
+} */
+
+.week-string {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+
+.table-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-date {
+    border: solid 2px #0099ff !important;
+}
+
+/* .day {
+    color: rgb(189, 197, 206);
+    width: 7%;
+    text-align: center;
+    margin: 10px 0px;
+    border: solid 2px gray;
+    padding: 10px;
+
+} */
+
+.td {
+    color: rgb(189, 197, 206);
+    width: 7%;
+    text-align: center;
+    /* margin: 10px 0px; */
+    border: solid 2px gray;
+    padding: 10px;
+
+}
+
+.td:hover {
+    border: solid 2px lightgray;
+    cursor: pointer;
+    /* transition: 1s; */
+}
+
+
+
+/* .day:hover {
+    border: solid 2px lightgray;
+    cursor: pointer;
+    /* transition: 1s; */
+
+
+.this-month-day {
+    color: white;
+}
+
+.today {
+    background: #0099ff;
+    border: solid 2px #0099ff;
+    position: relative;
+}
+
+.today:hover {
+    border: solid 2px #80bee7;
+}
+
+.today-pointed {
+    width: calc(100% - 4px);
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.today-pointed-active {
+    border: solid 2px black;
+}
