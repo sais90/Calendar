@@ -55,20 +55,6 @@ class Calendar {
         document.getElementById('year-current').innerHTML = this.firstDayOfCurrentMonth.getFullYear();
     }
 
-    // createTable = () => {
-    //     let weekday = document.createElement('div');
-    //     weekday.className = 'weekday';
-
-    //     this.dayNames.forEach(name => {
-    //         let td = document.createElement('div');
-    //         td.className = 'td';
-    //         td.innerHTML = name;
-    //         weekday.append(td);
-    //     })
-
-    //     document.getElementById('wrapper-table').appendChild(weekday);
-    // }
-
     createTable = () => {
         for (let i = 0; i < 6; i++) {
             let weekString = document.createElement('div');
@@ -93,16 +79,36 @@ class Calendar {
         }
 
         for (let i = 1; i < 43; i++) {
-            document.getElementById(`td-${i}`).append(date.getDate());  
+            let td = document.getElementById(`td-${i}`);
+            td.append(date.getDate());  
+            if (date.getDate() === this.now.getDate() && date.getMonth() === this.now.getMonth() && date.getFullYear() === this.now.getFullYear()) {
+                td.classList.add('today');
+            }
+            td.onclick = () => {this.setPointedDate(td, date)}; 
             date.setDate(date.getDate() + 1);
         }
     }
 
-    setCurrentDate = () => {
-        for (let i = 1; i < 43; i++) {
-            
-        }
+    setPointedDate = (td, date) => {
+        let selectedElements = document.getElementsByClassName('current-date');
+        Array.from(selectedElements).forEach((elem) => elem.classList.remove('current-date'));
+        td.classList.add('current-date');
+
+        document.getElementById('date-selected').innerHTML = 
+        date.getDate() + ' ' + this.monthNamesCase[date.getMonth()] + ' ' + date.getFullYear();
     }
+
+    //                 day.onclick = () => {
+    //                     let selectedElements = document.getElementsByClassName('current-date');
+    //                     Array.from(selectedElements).forEach((elem) => elem.classList.remove('current-date'));
+    
+    //                     todayPointed.classList.add('today-pointed-active');
+    //                     document.getElementById('date-selected').innerHTML =
+    //                     currentDate.getDate() + ' ' + this.monthNamesCase[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
+
+
+
+
 
     // fillTable = () => {
 
