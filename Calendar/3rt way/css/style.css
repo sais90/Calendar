@@ -11,6 +11,10 @@ body {
 }
 
 header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
     border-bottom: solid 1px white;
     margin: 10px;
     padding-bottom: 20px;
@@ -162,6 +166,10 @@ header {
 }
 
 .today-pointed-active {
-    border: solid 2px black;
-    background-color: crimson;
+    border: solid 2px black;  
+}
+
+.today-button {
+    width: calc(100% / 7);
+
 }
