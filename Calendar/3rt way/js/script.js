@@ -84,18 +84,36 @@ class Calendar {
             if (date.getDate() === this.now.getDate() && date.getMonth() === this.now.getMonth() && date.getFullYear() === this.now.getFullYear()) {
                 td.classList.add('today');
             }
-            td.onclick = () => {this.setPointedDate(td, date)}; 
+
+            let datePointed = new Date(this.firstDayOfCurrentMonth.getTime() + 1);
+            datePointed.setDate(date.getDate());
+
+            if (datePointed.getDate() === this.now.getDate() && datePointed.getMonth() === this.now.getMonth() && datePointed.getFullYear() === this.now.getFullYear()) {
+                td.classList.add('today-pointed-active')
+            };
+             
+            td.onclick = () => {
+                this.setPointedDate(td, datePointed)
+            }; 
             date.setDate(date.getDate() + 1);
         }
     }
 
-    setPointedDate = (td, date) => {
+    setPointedDate = (td, datePointed) => {
         let selectedElements = document.getElementsByClassName('current-date');
         Array.from(selectedElements).forEach((elem) => elem.classList.remove('current-date'));
+        let todayPointed = document.getElementsByClassName('today-pointed-active');
+        Array.from(todayPointed).forEach((elem) => elem.classList.remove('today-pointed-active'));
+
         td.classList.add('current-date');
 
+        if (datePointed.getDate() === this.now.getDate() && datePointed.getMonth() === this.now.getMonth() && datePointed.getFullYear() === this.now.getFullYear()) {
+            //code is valid, need to work with style
+            td.classList.add('today-pointed-active')
+         }
+         
         document.getElementById('date-selected').innerHTML = 
-        date.getDate() + ' ' + this.monthNamesCase[date.getMonth()] + ' ' + date.getFullYear();
+        datePointed.getDate() + ' ' + this.monthNamesCase[datePointed.getMonth()] + ' ' + datePointed.getFullYear();
     }
 
     //                 day.onclick = () => {
