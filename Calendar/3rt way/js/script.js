@@ -1,7 +1,7 @@
 window.onload = start;
 function start() {
     let calendar1 = new Calendar();
-    calendar1.render();
+    calendar1.render(this.now);
 }
 
 class Calendar {
@@ -17,8 +17,9 @@ class Calendar {
             'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
         this.monthNamesCase = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля',
             'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+        // this.datePointed = this.now;
 
-        this.pointedDate = this.now;
+        
     }
 
     changePrevMonth = () => {
@@ -43,8 +44,8 @@ class Calendar {
         document.getElementById('wrapper-table').innerHTML = null;
     }
 
-    createFullDate = () => {
-        document.getElementById('date-selected').innerHTML = this.pointedDate.getDate() + ' ' + this.monthNamesCase[this.pointedDate.getMonth()] + ' ' + this.pointedDate.getFullYear();
+    createFullDate = (datePointed) => {
+        document.getElementById('date-selected').innerHTML = datePointed.getDate() + ' ' + this.monthNamesCase[datePointed.getMonth()] + ' ' + datePointed.getFullYear();
     }
 
     createCurrentMonthFrame = () => {
@@ -71,6 +72,7 @@ class Calendar {
     }
 
     fillTable = () => {
+
         let date = new Date(this.firstDayOfCurrentMonth.getTime() + 1);
         date.setDate(this.firstDayOfCurrentMonth.getDate() - this.firstDayOfCurrentMonth.getDay() + 1);
 
@@ -79,25 +81,51 @@ class Calendar {
         }
 
         for (let i = 1; i < 43; i++) {
+
             let td = document.getElementById(`td-${i}`);
             td.append(date.getDate());  
+
+            if (date.getMonth() === this.firstDayOfCurrentMonth.getMonth()) {
+                td.classList.add('this-month-day');
+            }
+    
+
             if (date.getDate() === this.now.getDate() && date.getMonth() === this.now.getMonth() && date.getFullYear() === this.now.getFullYear()) {
                 td.classList.add('today');
             }
 
-            let datePointed = new Date(this.firstDayOfCurrentMonth.getTime() + 1);
-            datePointed.setDate(date.getDate());
+            // let datePointed = new Date(this.firstDayOfCurrentMonth.getTime() + 1);
+            // datePointed.setDate(date.getDate());
+
+            let datePointed = new Date(date);
+            // datePointed.setDate(date.getDate());
+
 
             if (datePointed.getDate() === this.now.getDate() && datePointed.getMonth() === this.now.getMonth() && datePointed.getFullYear() === this.now.getFullYear()) {
-                td.classList.add('today-pointed-active')
+                td.classList.add('today-pointed-active');
             };
+
+            
              
             td.onclick = () => {
-                this.setPointedDate(td, datePointed)
+
+                this.setPointedDate(td, datePointed);
+
+                
             }; 
             date.setDate(date.getDate() + 1);
         }
     }
+
+
+    //             if (date.getMonth() === this.firstDayOfCurrentMonth.getMonth()) {
+    //                 day.classList.add('this-month-day');
+
+
+    //                 if (this.pointedDate.getMonth() === this.firstDayOfCurrentMonth.getMonth() - 1) {
+    //                     this.firstDayOfCurrentMonth.setMonth(this.firstDayOfCurrentMonth.getMonth() - 1);
+    //                     this.render();
+
 
     setPointedDate = (td, datePointed) => {
         let selectedElements = document.getElementsByClassName('current-date');
@@ -110,20 +138,27 @@ class Calendar {
         if (datePointed.getDate() === this.now.getDate() && datePointed.getMonth() === this.now.getMonth() && datePointed.getFullYear() === this.now.getFullYear()) {
             //code is valid, need to work with style
             td.classList.add('today-pointed-active')
-         }
+        }
          
-        document.getElementById('date-selected').innerHTML = 
-        datePointed.getDate() + ' ' + this.monthNamesCase[datePointed.getMonth()] + ' ' + datePointed.getFullYear();
+
+        if (datePointed.getMonth() === this.firstDayOfCurrentMonth.getMonth() - 1) {
+            console.log('hi');
+            this.changePrevMonth();
+        }
+
+        if (datePointed.getMonth() === this.firstDayOfCurrentMonth.getMonth() + 1) {
+            console.log('bye');
+            this.changeNextMonth();
+        }
+
+        // document.getElementBd('date-selected').innerHTML = 
+        // datePointed.getDate() + ' ' + this.monthNamesCase[datePointed.getMonth()] + ' ' + datePointed.getFullYear();
+
+        this.createFullDate(datePointed);
+
+
+
     }
-
-    //                 day.onclick = () => {
-    //                     let selectedElements = document.getElementsByClassName('current-date');
-    //                     Array.from(selectedElements).forEach((elem) => elem.classList.remove('current-date'));
-    
-    //                     todayPointed.classList.add('today-pointed-active');
-    //                     document.getElementById('date-selected').innerHTML =
-    //                     currentDate.getDate() + ' ' + this.monthNamesCase[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
-
 
 
 
@@ -226,7 +261,7 @@ class Calendar {
     render = () => {
         this.createPrevButton();
         this.createNextButton();
-        this.createFullDate();
+        this.createFullDate(this.now);
         this.createCurrentMonthFrame();
         this.createCurrentYearFrame();
         this.createTable();
